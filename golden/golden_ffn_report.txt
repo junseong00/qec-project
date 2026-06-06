@@ -1,0 +1,14 @@
+====================================================================
+INT8 FFN (block 0) quantization report   Linear(32->128)->GELU->Linear(128->32)
+====================================================================
+scales: x=0.0353162 w1=0.0031157 y1=0.0330652 h=0.020513 w2=0.0020808 out=0.0132694
+requant: S=16  M1=218  M2=211
+W1q range [-122,127]  W2q range [-127,125]
+b1q range [-2625,1108]  b2q range [-3942,2319]
+x  in [-110,127]   y2q out in [-127,89]
+
+[4692 tokens]  INT8 vs float FFN:
+   max|INT8-float|   = 0.0471   (output abs-mean = 0.2714)
+   RMS error         = 0.0092   (relative RMS = 3.39%)
+   sign agreement    = 98.23%
+[TB] emitting 100 bit-exact vectors (extremes + even spread)

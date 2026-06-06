@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="620" viewBox="0 0 1400 620">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#21446f"/>
+    </marker>
+    <style>
+      .title{font:700 34px Arial, sans-serif; fill:#1d2633}
+      .label{font:700 22px Arial, sans-serif; fill:#1d2633}
+      .small{font:18px Arial, sans-serif; fill:#4b5563}
+      .stage{fill:#f7f9fc; stroke:#9bb5d8; stroke-width:2.3; rx:16}
+      .dsp{fill:#eef4ff; stroke:#5f86bf; stroke-width:2.3; rx:16}
+      .lut{fill:#f4fbf7; stroke:#91c6a4; stroke-width:2.3; rx:16}
+      .arrow{stroke:#21446f; stroke-width:3.5; marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect x="18" y="18" width="1364" height="584" rx="24" fill="#ffffff" stroke="#d8e0ea" stroke-width="2"/>
+  <text x="50" y="65" class="title">Noise Estimator: Pipelined Datapath Zoom</text>
+  <text x="50" y="96" class="small">Vivado schematic is too dense, so this view isolates the main pipeline stages.</text>
+
+  <rect x="60" y="180" width="160" height="110" class="stage"/>
+  <text x="88" y="225" class="label">P0</text>
+  <text x="83" y="255" class="small">operand /</text>
+  <text x="83" y="280" class="small">weight select</text>
+
+  <line x1="220" y1="235" x2="280" y2="235" class="arrow"/>
+  <rect x="295" y="165" width="175" height="140" class="dsp"/>
+  <text x="322" y="218" class="label">P1</text>
+  <text x="322" y="248" class="small">24 parallel</text>
+  <text x="322" y="273" class="small">INT8 products</text>
+
+  <line x1="470" y1="235" x2="530" y2="235" class="arrow"/>
+  <rect x="545" y="165" width="175" height="140" class="stage"/>
+  <text x="572" y="218" class="label">P2-P3</text>
+  <text x="572" y="248" class="small">adder tree</text>
+  <text x="572" y="273" class="small">+ bias</text>
+
+  <line x1="720" y1="235" x2="780" y2="235" class="arrow"/>
+  <rect x="795" y="165" width="175" height="140" class="dsp"/>
+  <text x="822" y="218" class="label">P4</text>
+  <text x="822" y="248" class="small">requant</text>
+  <text x="822" y="273" class="small">multiply</text>
+
+  <line x1="970" y1="235" x2="1030" y2="235" class="arrow"/>
+  <rect x="1045" y="165" width="175" height="140" class="stage"/>
+  <text x="1072" y="218" class="label">P5</text>
+  <text x="1072" y="248" class="small">round / shift</text>
+  <text x="1072" y="273" class="small">clamp INT8</text>
+
+  <line x1="1220" y1="235" x2="1280" y2="235" class="arrow"/>
+  <rect x="1055" y="390" width="210" height="110" class="lut"/>
+  <text x="1085" y="435" class="label">P6 LUT</text>
+  <text x="1085" y="465" class="small">GELU or Sigmoid</text>
+
+  <path d="M1130 305 C1130 345 1130 355 1130 390" class="arrow" fill="none"/>
+
+  <rect x="640" y="390" width="235" height="110" class="stage"/>
+  <text x="670" y="435" class="label">Writeback</text>
+  <text x="670" y="465" class="small">hq / out_flat / bin</text>
+  <path d="M1055 445 C980 445 950 445 875 445" class="arrow" fill="none"/>
+
+  <text x="60" y="550" class="small">Key message: The speed-optimal version uses pipeline stages and DSP-backed MAC/requantization to improve timing.</text>
+</svg>

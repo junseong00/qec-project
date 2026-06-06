@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="540" viewBox="0 0 1400 540">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#1f3b63"/>
+    </marker>
+    <style>
+      .title{font:700 34px Arial, sans-serif; fill:#1d2633}
+      .label{font:700 24px Arial, sans-serif; fill:#1d2633}
+      .small{font:18px Arial, sans-serif; fill:#4b5563}
+      .box{fill:#f5f8fc; stroke:#8fb0d9; stroke-width:2.5; rx:18}
+      .lut{fill:#f4fbf7; stroke:#9bc9ad; stroke-width:2.5; rx:18}
+      .io{fill:#eef4ff; stroke:#6f91c5; stroke-width:2.5; rx:18}
+      .arrow{stroke:#1f3b63; stroke-width:4; marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect x="18" y="18" width="1364" height="504" rx="24" fill="#ffffff" stroke="#d8e0ea" stroke-width="2"/>
+  <text x="50" y="65" class="title">Transformer FFN Block Diagram</text>
+  <text x="50" y="96" class="small">INT8 feed-forward network inside the QECCT Transformer block</text>
+
+  <rect x="50" y="205" width="190" height="120" class="io"/>
+  <text x="83" y="252" class="label">Input</text>
+  <text x="83" y="282" class="small">activation 32 x INT8</text>
+
+  <line x1="240" y1="265" x2="320" y2="265" class="arrow"/>
+
+  <rect x="335" y="190" width="215" height="150" class="box"/>
+  <text x="390" y="245" class="label">FC1</text>
+  <text x="375" y="275" class="small">Linear 32 -> 128</text>
+  <text x="375" y="305" class="small">32-lane MAC</text>
+
+  <line x1="550" y1="265" x2="630" y2="265" class="arrow"/>
+
+  <rect x="645" y="190" width="190" height="150" class="lut"/>
+  <text x="690" y="245" class="label">GELU</text>
+  <text x="690" y="275" class="small">LUT approx.</text>
+
+  <line x1="835" y1="265" x2="915" y2="265" class="arrow"/>
+
+  <rect x="930" y="190" width="215" height="150" class="box"/>
+  <text x="985" y="245" class="label">FC2</text>
+  <text x="965" y="275" class="small">Linear 128 -> 32</text>
+  <text x="965" y="305" class="small">4 chunks / neuron</text>
+
+  <line x1="1145" y1="265" x2="1225" y2="265" class="arrow"/>
+
+  <rect x="1240" y="205" width="120" height="120" class="io"/>
+  <text x="1265" y="252" class="label">Output</text>
+  <text x="1256" y="282" class="small">32 x INT8</text>
+
+  <text x="335" y="405" class="small">RTL file: ffn_pipe.v</text>
+  <text x="335" y="435" class="small">Implementation focus: 32-lane time-multiplexed MAC + packed WROM</text>
+</svg>

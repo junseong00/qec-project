@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620">
+  <defs>
+    <style>
+      .title{font:700 30px Arial, sans-serif;fill:#172033}
+      .label{font:700 20px Arial, sans-serif;fill:#172033}
+      .small{font:400 16px Arial, sans-serif;fill:#334155}
+      .tiny{font:400 14px Arial, sans-serif;fill:#475569}
+      .box{fill:#ffffff;stroke:#2f5d62;stroke-width:3;rx:12}
+      .soft{fill:#eef8f6;stroke:#2f5d62;stroke-width:2;rx:10}
+      .ai{fill:#fff5e8;stroke:#b96b21;stroke-width:3;rx:12}
+      .done{fill:#e8f6ed;stroke:#2d7d46;stroke-width:3;rx:10}
+      .future{fill:#f3f4f6;stroke:#64748b;stroke-width:2;stroke-dasharray:8 6;rx:10}
+      .arrow{stroke:#334155;stroke-width:3;fill:none;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#334155"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="620" fill="#fbfcfd"/>
+  <text x="60" y="58" class="title">ROQET 온디바이스 QEC AI 가속기 SoC 구성</text>
+  <text x="62" y="88" class="small">캡스톤 I 범위: QECCT Student d=3 핵심 연산 블록 RTL 기능 검증 및 Vivado OOC 구현 검증</text>
+
+  <rect x="60" y="160" width="210" height="120" class="box"/>
+  <text x="88" y="198" class="label">Quantum Processor</text>
+  <text x="95" y="228" class="small">Surface Code</text>
+  <text x="95" y="252" class="small">Syndrome 생성</text>
+
+  <rect x="330" y="135" width="230" height="170" class="soft"/>
+  <text x="365" y="176" class="label">Syndrome Buffer</text>
+  <text x="360" y="210" class="small">입력 수집</text>
+  <text x="360" y="234" class="small">정렬 / metadata</text>
+  <text x="360" y="258" class="tiny">후속 top-level 통합 대상</text>
+
+  <rect x="635" y="100" width="360" height="250" class="ai"/>
+  <text x="740" y="142" class="label">AI Engine</text>
+  <rect x="670" y="170" width="135" height="62" class="done"/>
+  <text x="690" y="196" class="small">noise</text>
+  <text x="684" y="216" class="small">estimator</text>
+  <rect x="830" y="170" width="130" height="62" class="future"/>
+  <text x="862" y="198" class="small">embedding</text>
+  <rect x="670" y="250" width="135" height="62" class="done"/>
+  <text x="703" y="276" class="small">FFN</text>
+  <text x="685" y="296" class="small">pipe RTL</text>
+  <rect x="830" y="250" width="130" height="62" class="future"/>
+  <text x="850" y="276" class="small">masked</text>
+  <text x="850" y="296" class="small">attention</text>
+
+  <rect x="635" y="420" width="165" height="100" class="soft"/>
+  <text x="660" y="456" class="label">Memory &amp;</text>
+  <text x="674" y="482" class="label">Control</text>
+  <text x="665" y="506" class="tiny">후속 통합 범위</text>
+
+  <rect x="875" y="420" width="165" height="100" class="soft"/>
+  <text x="903" y="456" class="label">I/O</text>
+  <text x="902" y="482" class="label">Interface</text>
+  <text x="903" y="506" class="tiny">AXI/AMBA 방향</text>
+
+  <rect x="1050" y="160" width="100" height="120" class="box"/>
+  <text x="1071" y="198" class="label">QEC</text>
+  <text x="1062" y="226" class="small">Correction</text>
+  <text x="1077" y="250" class="small">Command</text>
+
+  <path d="M270 220 H330" class="arrow"/>
+  <path d="M560 220 H635" class="arrow"/>
+  <path d="M995 220 H1050" class="arrow"/>
+  <path d="M815 350 V420" class="arrow"/>
+  <path d="M875 470 H800" class="arrow"/>
+  <path d="M1040 470 C1110 470 1110 300 1100 280" class="arrow"/>
+
+  <rect x="70" y="505" width="470" height="70" fill="#eef2ff" stroke="#4f46e5" stroke-width="2" rx="10"/>
+  <text x="95" y="535" class="small">완료된 검증: RTL bit-exact PASS + Vivado post-route resource/timing</text>
+  <text x="95" y="560" class="tiny">대상 블록: noise_estimator, ffn_pipe.v / Target: Zynq-7020</text>
+</svg>

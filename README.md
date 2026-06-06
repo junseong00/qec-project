@@ -3,7 +3,7 @@
 ## 소개
 이 프로젝트는 양자 오류 정정(QEC)을 위한 QECCT 기반 온디바이스 AI 디코더의 핵심 연산 블록을 Verilog RTL로 구현하고, Vivado 기반 FPGA OOC 합성 및 검증 결과를 정리한 코드/자료 모음입니다.
 
-범위는 전체 SoC를 완성하기보다, AI Engine 내부의 핵심 블록인 Noise Estimator와 Transformer FFN 블록이 RTL 수준에서 정확히 동작하고 FPGA에 구현 가능한지 확인하는 데 집중했습니다.
+캡스톤디자인 I 범위에서는 전체 SoC를 완성하기보다, AI Engine 내부의 핵심 블록인 Noise Estimator와 Transformer FFN 블록이 RTL 수준에서 정확히 동작하고 FPGA에 구현 가능한지 확인하는 데 집중했습니다.
 
 ## 주요 기능
 - QECCT Student 모델 기반 INT8 RTL 구현
@@ -65,3 +65,5 @@ fpga_handoff/
   - WNS +1.842 ns @ 100 MHz
   - latency 약 2.69 us
 
+## 라이선스
+MIT License

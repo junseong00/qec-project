@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="720" viewBox="0 0 1320 720">
+  <defs>
+    <style>
+      .bg{fill:#ffffff}
+      .scope{fill:#e6e6e6;stroke:#8a8a8a;stroke-width:2;rx:16}
+      .box{fill:#ffffff;stroke:#111827;stroke-width:2.4;rx:6}
+      .sub{fill:#f7f7f7;stroke:#111827;stroke-width:2;rx:5}
+      .done{fill:#e7f6ec;stroke:#208443;stroke-width:2.4;rx:5}
+      .future{fill:#f3f4f6;stroke:#6b7280;stroke-width:2;stroke-dasharray:7 5;rx:5}
+      .title{font:700 22px Arial, sans-serif;fill:#111827}
+      .label{font:700 19px Arial, sans-serif;fill:#111827}
+      .small{font:400 16px Arial, sans-serif;fill:#111827}
+      .tiny{font:400 14px Arial, sans-serif;fill:#111827}
+      .note{font:700 16px Arial, sans-serif;fill:#0f5132}
+      .wire{stroke:#111827;stroke-width:2.2;fill:none;marker-end:url(#arrow)}
+      .wire2{stroke:#111827;stroke-width:2.2;fill:none;marker-start:url(#arrow);marker-end:url(#arrow)}
+      .debug{stroke:#111827;stroke-width:2;fill:none;stroke-dasharray:6 5;marker-end:url(#arrow)}
+      .divider{stroke:#d1d5db;stroke-width:2}
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#111827"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1320" height="720"/>
+
+  <!-- External left blocks -->
+  <rect x="70" y="115" width="170" height="92" class="box"/>
+  <text x="108" y="150" class="label">양자 프로세서</text>
+  <text x="103" y="178" class="small">(초전도 큐비트)</text>
+
+  <rect x="70" y="275" width="170" height="92" class="box"/>
+  <text x="99" y="311" class="label">Stabilizer 측정</text>
+  <text x="112" y="339" class="small">하드웨어</text>
+
+  <rect x="70" y="440" width="170" height="92" class="box"/>
+  <text x="104" y="475" class="label">양자 제어 시스템</text>
+  <text x="98" y="503" class="small">(Pulse Generator)</text>
+
+  <line x1="320" y1="40" x2="320" y2="610" class="divider"/>
+
+  <!-- ROQET scope -->
+  <rect x="350" y="60" width="595" height="520" class="scope"/>
+  <text x="530" y="92" class="title">ROQET SoC (본 프로젝트 범위)</text>
+
+  <!-- Internal blocks -->
+  <rect x="390" y="135" width="245" height="165" class="sub"/>
+  <text x="443" y="166" class="label">Syndrome Buffer</text>
+  <text x="482" y="190" class="small">(신드롬 버퍼)</text>
+  <text x="410" y="220" class="tiny">• Multi-stage FIFO</text>
+  <text x="410" y="244" class="tiny">• Reorder Buffer</text>
+  <text x="410" y="268" class="tiny">• Metadata Table</text>
+  <text x="410" y="292" class="tiny">• Status Monitor</text>
+
+  <rect x="390" y="365" width="245" height="165" class="sub"/>
+  <text x="414" y="396" class="label">Memory &amp; Control Logic</text>
+  <text x="449" y="420" class="small">(메모리·제어 로직)</text>
+  <text x="410" y="450" class="tiny">• Data Dispatcher</text>
+  <text x="410" y="474" class="tiny">• PMU / Clock PLL</text>
+  <text x="410" y="498" class="tiny">• RISC-V Core (optional IP)</text>
+  <text x="410" y="522" class="tiny">• JTAG / control register</text>
+
+  <rect x="705" y="135" width="205" height="205" class="sub"/>
+  <text x="760" y="166" class="label">AI Engine</text>
+  <text x="744" y="190" class="small">(QECCT Student)</text>
+  <rect x="725" y="212" width="165" height="34" class="done"/>
+  <text x="741" y="235" class="tiny">✓ noise_estimator RTL</text>
+  <rect x="725" y="253" width="165" height="34" class="done"/>
+  <text x="751" y="276" class="tiny">✓ FFN pipe RTL</text>
+  <rect x="725" y="294" width="165" height="34" class="future"/>
+  <text x="739" y="317" class="tiny">attention/top: 후속</text>
+
+  <rect x="705" y="365" width="205" height="165" class="sub"/>
+  <text x="764" y="396" class="label">I/O Interface</text>
+  <text x="747" y="420" class="small">(입출력 인터페이스)</text>
+  <text x="725" y="450" class="tiny">• AXI / AMBA 기반</text>
+  <text x="725" y="474" class="tiny">• AXI4-Stream 256-bit</text>
+  <text x="725" y="498" class="tiny">• PCIe Gen5: 후속 연동</text>
+  <text x="725" y="522" class="tiny">• JTAG debug path</text>
+
+  <!-- Interconnect cross -->
+  <path d="M635 235 H705" class="wire2"/>
+  <path d="M635 445 H705" class="wire2"/>
+  <path d="M512 300 V365" class="wire2"/>
+  <path d="M807 340 V365" class="wire2"/>
+  <text x="603" y="346" class="small">AXI Interconnect</text>
+
+  <!-- Right external blocks -->
+  <line x1="1005" y1="40" x2="1005" y2="610" class="divider"/>
+
+  <rect x="1080" y="115" width="170" height="92" class="box"/>
+  <text x="1121" y="150" class="label">Host SoC</text>
+  <text x="1125" y="178" class="small">(AP·NPU)</text>
+
+  <rect x="1080" y="295" width="170" height="92" class="box"/>
+  <text x="1121" y="330" class="label">외부 DDR</text>
+  <text x="1132" y="358" class="small">(선택)</text>
+
+  <rect x="1080" y="470" width="170" height="92" class="box"/>
+  <text x="1127" y="505" class="label">디버그</text>
+  <text x="1123" y="533" class="small">Host PC</text>
+
+  <!-- External wires -->
+  <path d="M240 161 H350" class="wire2"/>
+  <path d="M240 321 H390" class="wire"/>
+  <path d="M240 486 H390" class="wire"/>
+  <path d="M1080 161 H945" class="wire2"/>
+  <text x="963" y="148" class="small">PCIe Gen5 x4</text>
+  <path d="M1080 341 H945" class="wire2"/>
+  <text x="975" y="326" class="small">AXI</text>
+  <path d="M1080 516 H945" class="debug"/>
+  <text x="969" y="501" class="small">JTAG</text>
+  <text x="948" y="531" class="tiny">(IEEE 1149.1)</text>
+
+  <!-- Feedback path -->
+  <path d="M512 530 V620 H155 V532" class="wire"/>
+  <text x="392" y="648" class="label">6단계 피드백 오류 정정 (End-to-End 목표 ≤ 1 us)</text>
+
+  <!-- Legend -->
+  <rect x="1075" y="590" width="190" height="90" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.6" rx="6"/>
+  <rect x="1092" y="606" width="34" height="16" class="done"/>
+  <text x="1138" y="620" class="tiny">캡스톤 I 검증 완료</text>
+  <rect x="1092" y="633" width="34" height="16" class="future"/>
+  <text x="1138" y="647" class="tiny">후속 통합 대상</text>
+  <line x1="1092" y1="666" x2="1126" y2="666" class="debug"/>
+  <text x="1138" y="671" class="tiny">제어·디버그</text>
+
+  <text x="376" y="603" class="note">업데이트: GNN 디코더 → QECCT Student / NoC PE Array → 검증 완료 RTL 블록(noise_estimator, FFN pipe)</text>
+</svg>

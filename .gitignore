@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local secrets
+.env
+*.key
+
+# Vivado generated work directories
+.Xil/
+*.jou
+*.log
+*.str
+*.rpt
+*.dcp
+*.bit
+*.ltx
+*.runs/
+*.cache/
+*.hw/
+*.ip_user_files/
+
+# Large/generated archives and temporary outputs
+archive/
+runs/
+*.zip
+*.rtd
+*.edf
+
+# Model checkpoints can be regenerated or provided separately
+*.pt
+*.pth
+
+# OS/editor
+.DS_Store
+Thumbs.db

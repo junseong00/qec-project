@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="620" viewBox="0 0 1320 620">
+  <defs>
+    <style>
+      .bg{fill:#fbfcfd}
+      .title{font:700 32px Arial, sans-serif;fill:#172033}
+      .sub{font:400 17px Arial, sans-serif;fill:#475569}
+      .label{font:700 19px Arial, sans-serif;fill:#172033}
+      .small{font:400 15px Arial, sans-serif;fill:#334155}
+      .tiny{font:400 13px Arial, sans-serif;fill:#475569}
+      .box{fill:#ffffff;stroke:#334155;stroke-width:2.5;rx:12}
+      .rtl{fill:#e8f6ed;stroke:#237a45;stroke-width:3;rx:12}
+      .pipe{fill:#eef6ff;stroke:#2563b8;stroke-width:3;rx:12}
+      .lut{fill:#fff7ed;stroke:#c2641a;stroke-width:3;rx:12}
+      .warn{fill:#f8fafc;stroke:#64748b;stroke-width:2;stroke-dasharray:7 5;rx:12}
+      .arrow{stroke:#334155;stroke-width:3;fill:none;marker-end:url(#arrow)}
+      .badge{fill:#2563b8}
+      .badgeText{font:700 13px Arial, sans-serif;fill:white}
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#334155"/>
+    </marker>
+  </defs>
+  <rect width="1320" height="620" class="bg"/>
+  <text x="60" y="58" class="title">ffn_pipe.v 블록 구조</text>
+  <text x="62" y="88" class="sub">TransformerBlock FFN: Linear(32→128) → GELU → Linear(128→32), INT8 pipelined RTL</text>
+
+  <rect x="55" y="175" width="150" height="95" class="box"/>
+  <text x="92" y="212" class="label">입력</text>
+  <text x="82" y="240" class="small">32 × INT8</text>
+
+  <rect x="260" y="145" width="200" height="155" class="rtl"/>
+  <text x="310" y="182" class="label">FC1</text>
+  <text x="294" y="210" class="small">Linear 32 → 128</text>
+  <text x="294" y="236" class="small">32-lane MAC</text>
+  <text x="294" y="262" class="tiny">1 chunk / neuron</text>
+
+  <rect x="515" y="175" width="160" height="95" class="lut"/>
+  <text x="560" y="212" class="label">GELU</text>
+  <text x="548" y="240" class="small">LUT 기반</text>
+
+  <rect x="730" y="130" width="260" height="185" class="rtl"/>
+  <text x="846" y="166" class="label">FC2</text>
+  <text x="775" y="194" class="small">Linear 128 → 32</text>
+  <text x="775" y="220" class="small">128차원 입력을 4 chunks 처리</text>
+  <text x="775" y="246" class="small">chunk 누산 후 requantization</text>
+  <text x="775" y="272" class="tiny">time-multiplexed 32-lane MAC</text>
+
+  <rect x="1050" y="175" width="150" height="95" class="box"/>
+  <text x="1087" y="212" class="label">출력</text>
+  <text x="1080" y="240" class="small">32 × INT8</text>
+
+  <path d="M205 223 H260" class="arrow"/>
+  <path d="M460 223 H515" class="arrow"/>
+  <path d="M675 223 H730" class="arrow"/>
+  <path d="M990 223 H1050" class="arrow"/>
+
+  <rect x="170" y="380" width="960" height="92" class="pipe"/>
+  <rect x="195" y="404" width="70" height="24" class="badge" rx="12"/>
+  <text x="210" y="421" class="badgeText">P0-P8</text>
+  <text x="285" y="414" class="label">파이프라인 단계</text>
+  <text x="285" y="443" class="small">weight/operand register → 32개 8×8 product → adder tree → chunk sum → accumulate → requant multiply → clamp/writeback</text>
+
+  <rect x="170" y="505" width="435" height="58" class="warn"/>
+  <text x="200" y="530" class="small">단일사이클 `ffn.v`는 기능 기준용</text>
+  <text x="200" y="552" class="tiny">합성 시 조합 MAC 규모가 커져 최종 합성 대상에서 제외</text>
+
+  <rect x="660" y="505" width="470" height="58" class="rtl"/>
+  <text x="690" y="530" class="small">합성 대상: `ffn_pipe.v`</text>
+  <text x="690" y="552" class="tiny">post-route: LUT 4,477 / FF 2,905 / DSP 2 / BRAM 0 / WNS +1.842 ns</text>
+</svg>

@@ -1,0 +1,74 @@
+{
+  "config": {
+    "teacher_N": 6,
+    "teacher_d": 128,
+    "teacher_heads": 8,
+    "teacher_ckpt": "qecct_L3_faulty.pt",
+    "student_N": 2,
+    "student_d": 32,
+    "student_heads": 4,
+    "use_linear_attn": false,
+    "temperature": 3.0,
+    "alpha_task": 0.5,
+    "alpha_kd": 0.3,
+    "alpha_attn": 0.2,
+    "lr": 0.0001,
+    "lr_min": 1e-06,
+    "batch_size": 512,
+    "n_epochs": 200,
+    "n_batches": 5000,
+    "lattice_sizes": [
+      3
+    ],
+    "noise_type": "independent",
+    "use_faulty": true,
+    "T_rounds": 3,
+    "p_meas_ratio": 1.0,
+    "p_train_range": [
+      0.005,
+      0.15
+    ],
+    "p_eval": [
+      0.01,
+      0.02,
+      0.03,
+      0.05,
+      0.08,
+      0.1,
+      0.12
+    ],
+    "eval_every": 20,
+    "eval_n_samples": 50000
+  },
+  "timestamp": "2026-05-01T00:09:38.924593",
+  "device": "cuda",
+  "L3": {
+    "student_ler": [
+      6e-05,
+      0.0003,
+      0.00112,
+      0.00464,
+      0.01932,
+      0.03518,
+      0.05986
+    ],
+    "student_ber": [
+      0.00222,
+      0.004262222222222222,
+      0.006586666666666667,
+      0.011553333333333334,
+      0.023442222222222222,
+      0.03540666666666667,
+      0.051533333333333334
+    ],
+    "p_values": [
+      0.01,
+      0.02,
+      0.03,
+      0.05,
+      0.08,
+      0.1,
+      0.12
+    ]
+  }
+}

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="520" viewBox="0 0 1400 520">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#1f3b63"/>
+    </marker>
+    <style>
+      .title{font:700 34px Arial, sans-serif; fill:#1d2633}
+      .label{font:700 24px Arial, sans-serif; fill:#1d2633}
+      .small{font:18px Arial, sans-serif; fill:#4b5563}
+      .box{fill:#f5f8fc; stroke:#8fb0d9; stroke-width:2.5; rx:18}
+      .lut{fill:#f4fbf7; stroke:#9bc9ad; stroke-width:2.5; rx:18}
+      .io{fill:#eef4ff; stroke:#6f91c5; stroke-width:2.5; rx:18}
+      .arrow{stroke:#1f3b63; stroke-width:4; marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect x="18" y="18" width="1364" height="484" rx="24" fill="#ffffff" stroke="#d8e0ea" stroke-width="2"/>
+  <text x="50" y="65" class="title">Noise Estimator Block Diagram</text>
+  <text x="50" y="96" class="small">syndrome 8-bit input -> initial noise feature 9-bit output</text>
+
+  <rect x="50" y="200" width="170" height="110" class="io"/>
+  <text x="88" y="245" class="label">Syndrome</text>
+  <text x="104" y="275" class="small">8-bit</text>
+
+  <line x1="220" y1="255" x2="300" y2="255" class="arrow"/>
+
+  <rect x="315" y="185" width="180" height="140" class="box"/>
+  <text x="365" y="238" class="label">FC1</text>
+  <text x="348" y="270" class="small">Linear 8 -> 24</text>
+
+  <line x1="495" y1="255" x2="575" y2="255" class="arrow"/>
+
+  <rect x="590" y="185" width="180" height="140" class="lut"/>
+  <text x="630" y="238" class="label">GELU</text>
+  <text x="637" y="270" class="small">LUT approx.</text>
+
+  <line x1="770" y1="255" x2="850" y2="255" class="arrow"/>
+
+  <rect x="865" y="185" width="180" height="140" class="box"/>
+  <text x="915" y="238" class="label">FC2</text>
+  <text x="895" y="270" class="small">Linear 24 -> 9</text>
+
+  <line x1="1045" y1="255" x2="1125" y2="255" class="arrow"/>
+
+  <rect x="1140" y="185" width="180" height="140" class="lut"/>
+  <text x="1180" y="238" class="label">Sigmoid</text>
+  <text x="1182" y="270" class="small">LUT approx.</text>
+
+  <line x1="1320" y1="255" x2="1360" y2="255" class="arrow"/>
+
+  <text x="318" y="382" class="small">RTL files: noise_estimator.v / noise_estimator_pipe.v</text>
+  <text x="318" y="412" class="small">Implementation focus: pipelined INT8 MAC + LUT activation</text>
+</svg>
