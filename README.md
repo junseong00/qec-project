@@ -64,6 +64,3 @@ fpga_handoff/
   - LUT 4,477, FF 2,905, DSP 2, BRAM 0
   - WNS +1.842 ns @ 100 MHz
   - latency 약 2.69 us
-
-## 라이선스
-MIT License
